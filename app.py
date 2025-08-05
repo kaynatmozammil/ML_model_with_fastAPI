@@ -72,6 +72,9 @@ class UserInput(BaseModel):
             return 3
     
 
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to Kaynat's Insurance Premium Prediction API!"}
 
 @app.post('/predict')
 def predict_premium(data:UserInput):
@@ -87,6 +90,6 @@ def predict_premium(data:UserInput):
 
     prediction  = model.predict(input_df)[0]
 
- return JSONResponse(status_code = 200 , content = ('Predicted_category':prediction) )
+    return JSONResponse(status_code=200 , content={'Predicted_category':prediction} )
 
 
